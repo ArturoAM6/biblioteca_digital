@@ -1,0 +1,37 @@
+# Biblioteca digital
+
+Una aplicación simple de una biblioteca digital hecha con Flask. Los usuarios pueden ingresar y reservar libros; los administradores pueden registrar nuevos libros y usuarios.
+
+## Requerimientos
+- Python 3.13.0
+- Flask
+- Flask-WTF
+- SQLAlchemy (opcional si se usa una base de datos)
+- Bootstrap 5
+
+## Instalación
+
+1. Clonar el repositorio:
+   ```bash
+   git clone https://github.com/ArturoAM6/biblioteca_digital.git
+   cd biblioteca_digital
+   ```
+
+2. Instalar dependencias:
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+3. Run the app:
+   ```bash
+   python run.py
+   ```
+
+## Screenshots
+![Login](static/images/login.png)
+![Tasks](static/images/tasks.png)
+
+## Tecnologias usadas
+- Flask
+- HTML, CSS (Bootstrap)
+- SQLAlchemy (Si aplica)
