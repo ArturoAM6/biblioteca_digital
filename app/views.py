@@ -26,7 +26,7 @@ def login():
         
         flash('Matricula o contraseña incorrectas.', 'error')
 
-    return render_template('login.html', form=form)
+    return render_template('accounts/login.html', form=form)
 
 @app.route('/register', methods=['GET','POST'])
 @login_required

@@ -5,7 +5,7 @@ from sqlalchemy import Enum
 from enum import Enum as PyEnum
 
 class User(db.Model, UserMixin):
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.String(20), primary_key=True)
     name = db.Column(db.String(50), nullable=False)
     password = db.Column(db.String(100), nullable=False)
     admin = db.Column(db.Boolean, default=False)
@@ -48,7 +48,7 @@ class Loan(db.Model):
     returned = db.Column(db.Boolean, default=False)
     fine = db.Column(db.Float, default=0.0)
     fine_paid = db.Column(db.Boolean, default=False)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    user_id = db.Column(db.String(20), db.ForeignKey('user.id'), nullable=False)
     book_id = db.Column(db.Integer, db.ForeignKey('book.id'), nullable=False)
 
     def __repr__(self):
