@@ -122,10 +122,6 @@ ul {
   color: #f5f9e9;
 }
 
-.greenfont {
-  color: #36453b;
-}
-
 .subheader a:hover {
   color: #36453b;
 }
@@ -179,10 +175,6 @@ ul {
   text-align: center;
   border-radius: 8px;
   overflow: hidden;
-}
-
-.img_container a {
-  color: #f5f9e9;
 }
 
 .container {
