@@ -380,6 +380,10 @@ ul {
   .container h2 {
     font-size: 30px;
   }
+
+  .img_container h2 {
+    font-size: 30px;
+  }
 }
 
 @media only screen and (max-width: 370px) {
@@ -421,6 +425,10 @@ ul {
 @media only screen and (max-width: 487px) {
   .img_nav {
     display: none;
+  }
+
+  .nav {
+    display: flex;
   }
 }
 

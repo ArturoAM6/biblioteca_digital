@@ -10,7 +10,7 @@
   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
   transition: transform 0.3s ease-in-out;
   transform: translateX(-100%);
-  z-index: 1;
+  z-index: 1000;
 }
 
 .toggle-btn {
@@ -23,7 +23,7 @@
   font-size: 24px;
   padding: 10px;
   cursor: pointer;
-  z-index: 1000;
+  z-index: 1001;
 }
 
 
@@ -82,15 +82,16 @@
 .list-menu {
   width: 250px;
   height: max-content;
-  background: #c2c1a5;
+  background: #54685a;
   color: white;
   position: fixed;
   padding: 0px 20px;
+  margin-top: 5px;
   box-shadow: 2px 0 5px rgba(0.2, 0.2, 0.2, 0.2);
   transition: transform 0.3s ease-in-out;
   transform: translateY(-9%);
   transform: translateX(-7%);
-  z-index: 1;
+  z-index: 1000;
   display: none;
   overflow: none;
 }
@@ -108,5 +109,28 @@
 @media (max-width: 768px) {
   .sidebar {
     width: 200px;
+  }
+
+  .list-menu {
+    width: 200px;
+  }
+
+  .toggle-btn {
+    top: 2px;
+    left: 15px;
+  }
+}
+
+@media only screen and (max-width: 370px) {
+  .toggle-btn {
+    display: inline;
+    position: absolute;
+  }  
+}
+
+@media only screen and (max-width: 487px) {
+  .toggle-btn {
+    position: absolute;
+    display: inline-flex;
   }
 }
