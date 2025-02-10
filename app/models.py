@@ -35,6 +35,7 @@ class Book(db.Model):
     synopsis = db.Column(db.String(300), nullable=True)
     release_date = db.Column(db.Date, nullable=False)
     status = db.Column(db.Boolean, default=True)
+    times_loaned = db.Column(db.Integer, nullable=False)
     loans = db.relationship('Loan', backref='book', lazy='select')
 
     def __repr__(self):
