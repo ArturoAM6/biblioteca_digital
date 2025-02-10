@@ -1,0 +1,56 @@
+{% extends "layouts/base.html" %}
+
+{% block title %}Login - Biblioteca Virtual{% endblock %}
+
+{% block content %}
+<div class="container form-background">
+    <div>
+        <h1 class="bold">Bienvenido
+            a la Biblioteca UAL
+        </h1>
+    </div>
+    <h2 class="form-title lead">Registro</h2>
+    <form class="form" method="POST">
+        {{ form.hidden_tag() }}
+
+        <div class="form-field">
+            <label for="name" class="form-label">Nombre</label>
+            {{ form.name(class="form-input", placeholder="Ingrese su nombre") }}
+            {% if form.name.errors %}
+            <div class="error-alert">{{ form.name.errors[0] }}</div>
+            {% endif %}
+        </div>
+
+        <div class="form-field">
+            <label class="form-label" for="user">Matrícula</label>
+            {{ form.user(class="form-input", placeholder="Ingrese su matrícula") }}
+            {% if form.user.errors %}
+            <div class="error-alert">{{ form.user.errors[0] }}</div>
+            {% endif %}
+        </div>
+
+        <div class="form-field">
+            <label class="form-label" for="password">Contraseña</label>
+            {{ form.password(class="form-input", placeholder="Ingrese su contraseña")}}
+            {% if form.password.errors %}
+            <div class="error-alert">{{ form.password.errors[0] }}</div>
+            {% endif%}
+        </div>
+
+        <div class="form-field">
+            <label class="form-label" for="confirm_password">Contraseña</label>
+            {{ form.confirm_password(class="form-input", placeholder="Repita su contraseña")}}
+            {% if form.confirm_password.errors %}
+            <div class="error-alert">{{ form.confirm_password.errors[0] }}</div>
+            {% endif%}
+        </div>
+
+        <div class="form-check">
+            {{ form.admin(class="form-check-input") }}
+            <label class="form-check-label" for="admin">Registrar como Administrador</label>
+        </div>
+
+        <button type="submit" class="button">Ingresar</button>
+    </form>
+</div>
+{% endblock %}
