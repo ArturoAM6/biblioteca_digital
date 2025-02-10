@@ -1,0 +1,11 @@
+{% extends "layouts/base.html" %}
+
+{% block title %}Terror - Biblioteca Virtual{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h1 class="error-title">Oops!</h1>
+        <p class="lead">Esta página sigue en construcción. Vuelve pronto {{ current_user.name}}!</p>
+        <a href="{{ url_for('home') }}" class="button">Volver</a>
+    </div>
+{% endblock %}
