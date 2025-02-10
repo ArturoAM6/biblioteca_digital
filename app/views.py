@@ -1,8 +1,8 @@
 from flask import render_template, flash, redirect, url_for, request
 from flask_login import login_user, login_required, logout_user, current_user
 from app import db, bcrypt, app
-from models import User, Book, Loan
-from forms import LoginForm, RegisterForm, AddBookForm, AddLoanForm
+from .models import User, Book, Loan
+from .forms import LoginForm, RegisterForm, AddBookForm, AddLoanForm
 
 @app.route('/')
 def home():
@@ -21,7 +21,7 @@ def login():
 
         if user and bcrypt.check_password_hash(user.password, password):
             login_user(user)
-            flash('Login succesful!', 'success')
+            flash('Ingreso exitoso!', 'success')
             return redirect(url_for('home'))
         
         flash('Matricula o contraseña incorrectas.', 'error')
@@ -57,7 +57,7 @@ def register():
         flash('Registro exitoso!', 'success')
         return redirect(url_for('home'))
     
-    return render_template('register.html', form=form)
+    return render_template('accounts/register.html', form=form)
 
 @app.route('/logout')
 @login_required
@@ -65,3 +65,8 @@ def logout():
     logout_user()
     flash('Sesión cerrada exitosamente.', 'success')
     return redirect(url_for('login'))
+
+@app.route('/profile')
+@login_required
+def profile():
+    return render_template(url_for("accounts/profile.html"))
