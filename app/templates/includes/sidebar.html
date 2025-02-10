@@ -1,6 +1,16 @@
 <div class="sidebar" id="sidebar">
     <ul>
         <li><a href="{{ url_for('home') }}">Inicio</a></li>
+        <li>
+            <button class="list-button" onclick="toggleListMenu()">Categorías</button>
+            <div class="list-menu" id="list-menu">
+                <ul>
+                    <li><a href="{{ url_for('terror') }}">Terror</a></li>
+                    <li><a href="{{ url_for('autoayuda') }}">Autoayuda</a></li>
+                    <li><a href="{{ url_for('infantiles') }}">Infantiles</a></li>
+                </ul>
+            </div>
+        </li>
 
         {% if current_user.is_authenticated %}
             <li><a href="{{ url_for('profile') }}">Perfil</a></li>

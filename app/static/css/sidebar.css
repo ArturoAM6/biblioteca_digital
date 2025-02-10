@@ -1,66 +1,112 @@
 .sidebar {
-    width: 250px;
-    height: 100vh;
-    background: #36453b;
-    color: white;
-    position: fixed;
-    left: 0;
-    top: 0;
-    padding: 20px;
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
-    transition: transform 0.3s ease-in-out;
-    transform: translateX(-100%);
-    z-index: 1;
+  width: 250px;
+  height: 100vh;
+  background: #36453b;
+  color: white;
+  position: fixed;
+  left: 0;
+  top: 0;
+  padding: 20px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease-in-out;
+  transform: translateX(-100%);
+  z-index: 1;
 }
 
 .toggle-btn {
-    position: absolute;
-    top: 15px;
-    left: 15px;
-    border: none;
-    background-color: #36453b;
-    color: white;
-    font-size: 24px;
-    padding: 10px;
-    cursor: pointer;
-    z-index: 1000;
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  border: none;
+  background-color: #36453b;
+  color: white;
+  font-size: 24px;
+  padding: 10px;
+  cursor: pointer;
+  z-index: 1000;
 }
 
+
 .sidebar h2 {
-    font-size: 1.5rem;
-    margin-bottom: 20px;
-    text-align: center;
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  text-align: center;
 }
 
 .sidebar ul {
-    margin-top: 5vh;
-    list-style: none;
-    padding: 0;
+  margin-top: 5vh;
+  list-style: none;
+  padding: 0;
 }
 
 .sidebar ul li {
-    padding: 10px 0;
+  padding: 10px 0;
 }
 
 .sidebar ul li a {
-    color: white;
-    text-decoration: none;
-    font-size: 1.2rem;
-    display: block;
-    padding: 8px;
-    border-radius: 5px;
+  color: white;
+  text-decoration: none;
+  font-size: 1.2rem;
+  display: block;
+  padding: 8px;
+  border-radius: 5px;
 }
 
 .sidebar ul li a:hover {
-    background: #555;
+  background: #555;
 }
 
 .sidebar.hidden {
     transform: translateX(0%);
+    display: block;
+}
+
+.list-button {
+  background-color: #36453b;
+  color: white;
+  border: none;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 1.2rem;
+  display: block;
+  padding: 8px;
+  border-radius: 5px;
+}
+
+.list-button:hover {
+  background: #555;
+}
+
+.list-menu {
+  width: 250px;
+  height: max-content;
+  background: #c2c1a5;
+  color: white;
+  position: fixed;
+  padding: 0px 20px;
+  box-shadow: 2px 0 5px rgba(0.2, 0.2, 0.2, 0.2);
+  transition: transform 0.3s ease-in-out;
+  transform: translateY(-9%);
+  transform: translateX(-7%);
+  z-index: 1;
+  display: none;
+  overflow: none;
+}
+
+.list-menu ul {
+  list-style: none;
+  margin-top: 0;
+  padding: 0;
+}
+
+.list-menu.hidden {
+  display: block;
 }
 
 @media (max-width: 768px) {
-    .sidebar {
-        width: 200px;
-    }
+  .sidebar {
+    width: 200px;
+  }
 }

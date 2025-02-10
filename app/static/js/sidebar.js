@@ -7,3 +7,13 @@ function toggleSidebar() {
     sidebar.classList.add("hidden");
   }
 }
+
+function toggleListMenu() {
+  let listMenu = document.getElementById("list-menu")
+
+  if (listMenu.classList.contains("hidden")) {
+    listMenu.classList.remove("hidden");
+  } else {
+    listMenu.classList.add("hidden");
+  }
+}

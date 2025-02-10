@@ -110,6 +110,10 @@ ul {
   color: #36453b;
 }
 
+.title {
+  margin-top: 15px;
+}
+
 .subheader {
   font-size: 10px;
   text-align: center;
