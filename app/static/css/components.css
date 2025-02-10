@@ -1,0 +1,24 @@
+.button {
+  background-color: #f5f9e9;
+  color: black;
+  padding: 10px 20px;
+  display: inline-block;
+  font-size: 1rem;
+  border: none;
+  text-decoration: none;
+  margin-top: 15px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.error-title {
+  font-size: 2.5rem;
+}
+
+.lead {
+  font-size: 1.25rem;
+}
+
+.button:hover {
+  background-color: #c4c4c4;
+}
