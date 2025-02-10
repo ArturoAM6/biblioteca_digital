@@ -70,3 +70,15 @@ def logout():
 @login_required
 def profile():
     return render_template('accounts/profile.html')
+
+@app.route('/terror')
+def terror():
+    return render_template('books/terror.html')
+
+@app.route('/autoayuda')
+def autoayuda():
+    return render_template('books/autoayuda.html')
+
+@app.route('/infantiles')
+def infantiles():
+    return render_template('books/infantiles.html')
