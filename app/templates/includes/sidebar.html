@@ -1,0 +1,17 @@
+<div class="sidebar" id="sidebar">
+    <ul>
+        <li><a href="{{ url_for('home') }}">Inicio</a></li>
+
+        {% if current_user.is_authenticated %}
+            <li><a href="{{ url_for('profile') }}">Perfil</a></li>
+            <li><a href="{{ url_for('logout') }}">Cerrar Sesión</a></li>
+
+            {% if current_user.admin %}
+                <li><a href="{{ url_for('register')}}">Registrar Usuario</a></li>
+            {% endif %}
+            
+        {% else %}
+            <li><a href="{{ url_for('login') }}">Iniciar Sesión</a></li>
+        {% endif %}
+    </ul>
+</div>
