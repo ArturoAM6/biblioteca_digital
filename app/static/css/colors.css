@@ -5,3 +5,9 @@
 .green-font {
   color: #36453b;
 }
+
+.error-alert {
+  color: #bd2929;
+  font-style: italic;
+  margin-bottom: 10px;
+}
