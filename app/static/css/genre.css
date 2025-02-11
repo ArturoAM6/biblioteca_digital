@@ -67,15 +67,17 @@
 
 .imagen {
   width: 100%;
-  display: block;
-  margin-bottom: -10px;
+  height: 495px; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden; 
 }
 
 .imagen img {
   width: 100%;
-  min-height: 121px;
-  max-height: 465px;
-  object-fit: contain;
+  height: 100%;
+  object-fit: cover; 
 }
 
 .nohover {
@@ -195,15 +197,17 @@
 
   .imagen {
     width: 100%;
-    display: block;
-    margin-bottom: -10px;
+    height: 485px; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; 
   }
-
+  
   .imagen img {
     width: 100%;
-    min-height: 121px;
-    max-height: 465px;
-    object-fit: contain;
+    height: 100%;
+    object-fit: cover; 
   }
 
   .info {
