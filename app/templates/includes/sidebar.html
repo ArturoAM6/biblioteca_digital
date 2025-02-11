@@ -5,21 +5,23 @@
             <button class="list-button" onclick="toggleListMenu()">Categorías</button>
             <div class="list-menu" id="list-menu">
                 <ul>
-                    <li><a href="{{ url_for('terror') }}">Terror</a></li>
-                    <li><a href="{{ url_for('autoayuda') }}">Autoayuda</a></li>
-                    <li><a href="{{ url_for('infantiles') }}">Infantiles</a></li>
+                    <li><a>Terror</a></li>
+                    <li><a>Autoayuda</a></li>
+                    <li><a>Infantiles</a></li>
                 </ul>
             </div>
         </li>
 
         {% if current_user.is_authenticated %}
             <li><a href="{{ url_for('profile') }}">Perfil</a></li>
-            <li><a href="{{ url_for('logout') }}">Cerrar Sesión</a></li>
-
+                
             {% if current_user.admin %}
                 <li><a href="{{ url_for('register')}}">Registrar Usuario</a></li>
+                <li><a href="{{ url_for('register_book') }}">Nuevo Libro</a></li>
+                <li><a href="{{ url_for('admin_loans') }}">Gestión de Préstamos</a></li>
             {% endif %}
-            
+                
+            <li><a href="{{ url_for('logout') }}">Cerrar Sesión</a></li>
         {% else %}
             <li><a href="{{ url_for('login') }}">Iniciar Sesión</a></li>
         {% endif %}
