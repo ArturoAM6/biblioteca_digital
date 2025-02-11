@@ -37,14 +37,14 @@
 }
 
 .form-label {
-  width: 50%;
+  width: 70%;
   margin: 0 auto;
   display: block;
   text-align: left;
 }
 
 .form-input {
-  width: 50%;
+  width: 70%;
   height: 2.5rem;
   border: none;
   border-radius: 5px;
@@ -74,6 +74,16 @@
 
 .form-check-label {
   margin-left: 5px;
+}
+
+.form-textarea {
+  width: 70%;
+  height: 15rem;
+  border: none;
+  border-radius: 5px;
+  margin: 10px auto;
+  padding-left: 10px;
+  font-size: 1rem;
 }
 
 .alert {
@@ -138,4 +148,78 @@
 
 .alert .btn-close:hover {
     opacity: 1;
+}
+
+.table {
+  width: 100%;
+  margin-top: 20px;
+  border-top: solid 1px #0c3d58;
+  border-bottom: none;
+  background-color: #36453b;
+}
+
+.table th {
+  font-weight: 800;
+  color: #f1f1f1;
+  padding: 5px 8px;
+}
+
+.table td {
+  padding: 7px 8px;
+  background-color: #f1f1f1;
+  border: none;
+}
+
+.table button {
+  display: flex;
+  margin: 10px auto;
+  vertical-align: middle;
+  background-color: #36453b;
+  color: #f1f1f1;
+}
+
+.table-form {
+  text-align: start;
+}
+
+.small-button {
+  background-color: white;
+  color: black;
+  padding: 5px 10px;
+  display: inline-block;
+  font-size: 1rem;
+  border: none;
+  text-decoration: none;
+  margin-top: 15px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.small-form-input {
+  width: 90%;
+  height: 1.5rem;
+  border: none;
+  border-radius: 5px;
+  padding-left: 10px;
+  font-size: 1rem;
+}
+
+#filter-form {
+  display: flex;
+  width: 100%;
+  background-color: #D6D5C2;
+  margin-top: 10px;
+  padding: 10px 0 10px 10px;
+  border: none;
+  border-radius: 10px;
+}
+
+#filter-form .form-label {
+  margin: 5px 0;
+  font-weight: 600;
+}
+
+.col-3 {
+  position: relative;
+  width: 33%;
 }

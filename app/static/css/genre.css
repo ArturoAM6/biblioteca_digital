@@ -1,0 +1,245 @@
+.subheader {
+  font-size: 10px;
+  text-align: center;
+  color: #f5f9e9;
+}
+
+.subheader a {
+  text-decoration: none;
+  color: #f5f9e9;
+}
+
+.subheader a:hover {
+  color: #36453b;
+}
+
+.main-info {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+}
+
+.main-info h2 {
+  text-transform: uppercase;
+  font-size: 35px;
+  font-weight: 600;
+  color: #36453b;
+}
+
+.main-info p {
+  font-size: 15px;
+}
+
+.container {
+  width: 82%;
+  height: fit-content;
+  margin: 20px 0;
+  position: relative;
+  display: flex;
+}
+
+.row {
+  display: list-item;
+  list-style: none;
+  position: relative;
+  width: 95%;
+}
+
+.row li {
+  display: inline-block;
+  width: 30%;
+  max-width: fit-content;
+  max-height: fit-content;
+  text-align: left;
+}
+
+.producto {
+  width: 100%;
+  max-width: 345px;
+  height: fit-content;
+  background-color: #b5b392;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 5px;
+  position: relative;
+  overflow: hidden;
+}
+
+.imagen {
+  width: 100%;
+  display: block;
+  margin-bottom: -10px;
+}
+
+.imagen img {
+  width: 100%;
+  min-height: 121px;
+  max-height: 465px;
+  object-fit: contain;
+}
+
+.nohover {
+  display: block;
+  position: relative;
+  
+}
+
+.info {
+  width: 100%;
+  height: max-content;
+  background-color: white;
+  padding: 10px 0 30px 10px;
+  color: #36453b;
+  z-index: 1;
+  text-overflow: ellipsis;
+}
+
+.ellipsis {
+  display: block;
+  width: 80%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.info a {
+  color: #596869;
+  font-size: 15px;
+  text-overflow: ellipsis;
+}
+
+.info a:hover {
+  text-decoration: underline;
+}
+
+.info p {
+  margin-top: 10px;
+  font-size: 15px;
+}
+
+.bold {
+  font-weight: 800;
+}
+
+.small {
+  font-size: 10px;
+}
+
+.med_small {
+  font-size: 15px;
+}
+
+@media only screen and (max-width: 770px) {
+  #header {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    margin: 0 auto;
+    top: 0;
+  }
+
+  #header h1 a {
+    text-size-adjust: inherit;
+    text-align: center;
+    width: 30%;
+    margin: 0 auto;
+  }
+
+  .title,
+  .subheader {
+    position: relative;
+    z-index: 1;
+  }
+
+  .nav_main {
+    height: 100%;
+    float: none;
+    width: 90%;
+    text-align: center;
+  }
+
+  .main-info {
+    width: 90%;
+    margin: 20px auto;
+  }
+
+  .main-info h2 {
+    text-align: center;
+  }
+
+  .container {
+    margin: 20px auto;
+    width: 90%;
+  }
+
+  .row li {
+    display: inline-block;
+    width: 29%;
+    max-width: fit-content;
+    max-height: fit-content;
+    text-align: left;
+  }
+
+  .producto {
+    width: 100%;
+    max-width: 345px;
+    height: fit-content;
+    background-color: #b5b392;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 5px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .imagen {
+    width: 100%;
+    display: block;
+    margin-bottom: -10px;
+  }
+
+  .imagen img {
+    width: 100%;
+    min-height: 121px;
+    max-height: 465px;
+    object-fit: contain;
+  }
+
+  .info {
+    width: 100%;
+    height: 100px;
+    background-color: white;
+    padding: 10px;
+    color: #36453b;
+  }
+
+  .info a {
+    font-size: 15px;
+  }
+
+  .info p {
+    font-size: 10px;
+  }
+}
+
+@media only screen and (max-width: 370px) {
+  #header h1 {
+    font-size: 25px;
+  }
+
+  .nav img {
+    width: 10%;
+    height: 10%;
+    margin-left: -10px;
+    top: -22px;
+  }
+
+  .nav_main {
+    text-align: center;
+  }
+
+  .info a {
+    font-size: 10px;
+  }
+}
