@@ -1,0 +1,66 @@
+{% extends "layouts/base.html" %}
+
+{% block title %}Gestión de Préstamos{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2 class="bold">Préstamos Pendientes</h2>
+
+    <form action="{{ url_for('admin_loans') }}" method="get" class="table-form" id="filter-form">
+        <div class="col-3">
+            <label for="user_id" class="form-label align-left">Filtrar por matrícula</label>
+            <input type="text" class="small-form-input" name="user_id" placeholder="Filtrar por matrícula"
+                value="{{ request.args.get('user_id') }}">
+        </div>
+        <div class="col-3">
+            <label for="book_id" class="form-label">Filtrar por ID de Libro</label>
+            <input type="text" class="small-form-input" name="book_id" placeholder="Filtrar por ID de Libro"
+                value="{{ request.args.get('book_id') }}">
+        </div>
+        <div class="col-3">
+            <button type="submit" class="button small-button">Filtrar</button>
+        </div>
+    </form>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Usuario</th>
+                <th>Matrícula</th>
+                <th>Libro</th>
+                <th>Fecha Préstamo</th>
+                <th>Fecha Devolución</th>
+                <th>Estado</th>
+                <th>Multa</th>
+                <th>Acción</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for loan in loans %}
+            <tr>
+                <td>{{ loan.user.name }}</td>
+                <td>{{ loan.user.id }}</td>
+                <td>{{ loan.book.title }}</td>
+                <td>{{ loan.loan_date }}</td>
+                <td>{{ loan.devolution_date }}</td>
+                <td>
+                    {% if loan.returned %}
+                    <span>Devuelto</span>
+                    {% else %}
+                    <span>Pendiente</span>
+                    {% endif %}
+                </td>
+                <td>${{ loan.fine }}</td>
+                <td>
+                    {% if not loan.returned %}
+                    <form action="{{ url_for('confirm_return', loan_id=loan.id) }}" method="post">
+                        <button type="submit" class="button">Confirmar Devolución</button>
+                    </form>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
