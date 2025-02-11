@@ -1,0 +1,59 @@
+{% extends "layouts/base.html" %}
+
+{% block title %}Nuevo libro - Biblioteca Virtual{% endblock %}
+
+{% block content %}
+<div class="container form-background">
+    <div>
+        <h1 class="bold">Bienvenido
+            {{ current_user.name }}!
+        </h1>
+    </div>
+    <h2 class="form-title lead">Registro de libro</h2>
+    <form class="form" method="POST">
+        {{ form.hidden_tag() }}
+
+        <div class="form-field">
+            <label for="title" class="form-label">Título</label>
+            {{ form.title(class="form-input", placeholder="Ingrese el título del libro") }}
+            {% if form.title.errors %}
+            <div class="error-alert">{{ form.title.errors[0] }}</div>
+            {% endif %}
+        </div>
+
+        <div class="form-field">
+            <label class="form-label" for="author">Autor</label>
+            {{ form.author(class="form-input", placeholder="Ingrese el autor del libro") }}
+            {% if form.author.errors %}
+            <div class="error-alert">{{ form.author.errors[0] }}</div>
+            {% endif %}
+        </div>
+
+        <div class="form-field">
+            <label class="form-label" for="genre">Género</label>
+            {{ form.genre(class="form-input")}}
+            {% if form.genre.errors %}
+            <div class="error-alert">{{ form.genre.errors[0] }}</div>
+            {% endif%}
+        </div>
+
+        <div class="form-field">
+            <label class="form-label" for="release_date">Año de lanzamiento</label>
+            {{ form.release_date(class="form-input", type="number", min="500", max="2100", step="1", placeholder="Ingrese el año de lanzamiento") }}
+            {% if form.release_date.errors %}
+            <div class="error-alert">{{ form.release_date.errors[0] }}</div>
+            {% endif%}
+        </div>
+
+        <div class="form-field">
+            <label class="form-label" for="synopsis">Sinopsis</label>
+            {{ form.synopsis(class="form-textarea", placeholder='Ingrese una sinopsis (opcional)')}}
+            {% if form.synopsis.errors %}
+            <div class="error-alert">{{ form.synopsis.errors[0] }}</div>
+            {% endif%}
+        </div>
+
+        <button type="submit" class="button">Ingresar</button>
+    </form>
+</div>
+{% endblock %}

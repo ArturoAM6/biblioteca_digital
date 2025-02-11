@@ -1,0 +1,60 @@
+{% extends "layouts/base.html" %}
+
+{% block title %}{{ genre }} - Biblioteca Digital{% endblock %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/genre.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="subheader">
+    <h3>
+        <a href="{{ url_for('home') }}">BibliotecaVirtual.com</a> /
+        <a href="{{ url_for('books_by_genre', genre_name=genre)}}"><span>{{genre}}</span></a> /
+        <a href="{{ url_for('books_by_genre', genre_name=genre)}}"><span class="greenfont">Todo</span></a>
+    </h3>
+</div>
+<div id="main">
+    <div class="nav_main">
+        <ul>
+            <li class="bold">
+                Libros top
+                <ul>
+                    <li><a>1. It</a></li>
+                    <li><a>2.El umbral de la noche</a></li>
+                </ul>
+            </li>
+
+        </ul>
+    </div>
+    <div class="container">
+        <div class="row">
+            <ul>
+            {% for book in books %}
+                <li>
+                    <div class="producto">
+                        <div class="imagen">
+                            <a href="{{ url_for('book_details', book_id=book.id) }}">
+                                <img src="{{ url_for('static', filename='images/books/portada_{}.jpg'.format(book.title|replace(' ', '_')|lower)) }}"
+                                    alt="Portada de {{ book.title }}" class="nohover" />
+                            </a>
+                        </div>
+                        <div class="info">
+                            <h3>
+                                <span class="ellipsis">
+                                    <a href="{{ url_for('book_details', book_id=book.id) }}">{{ book.title }}</a>
+                                </span>
+                            </h3>
+                            <p>Autor: {{ book.author }}</p>
+                        </div>
+                    </div>
+                </li>
+            {% else %}
+                <p>No se encontraron libros en esta categoría.</p>
+            {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

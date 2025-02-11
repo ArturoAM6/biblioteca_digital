@@ -1,0 +1,32 @@
+{% extends "layouts/base.html" %}
+
+{% block title %}{{ book.title }} - Biblioteca Digital{% endblock %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/details.css') }}">
+{% endblock %}
+
+
+{% block content %}
+<div class="container">
+    <div class="images">
+        <ul>
+            <li>
+                <img src="{{ url_for('static', filename='images/books/portada_' + book.title|replace(' ', '_')|lower + '.jpg') }}"
+                    alt="Portada de {{ book.title }}">
+            </li>
+        </ul>
+    </div>
+    <div class="info">
+        <h2>{{ book.title }}</h2>
+        <p class="author">Autor: {{ book.author }}</p>
+        <p class="synopsis">{{ book.synopsis }}</p>
+
+        <form action="{{ url_for('loan_book', book_id=book.id) }}" method="POST">
+            <div class="button">
+                <button type="submit">Reservar</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
