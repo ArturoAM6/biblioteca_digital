@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, TextAreaField, SelectField, DateField, IntegerField, BooleanField
-from wtforms.validators import InputRequired, Length, EqualTo, ValidationError
+from wtforms.validators import InputRequired, Length, EqualTo, ValidationError, NumberRange
 from .models import GenreEnum, User
 
 class LoginForm(FlaskForm):
@@ -26,10 +26,5 @@ class AddBookForm(FlaskForm):
     author = StringField('Autor', validators=[InputRequired(), Length(min=4, max=100)])
     title = StringField('Titulo', validators=[InputRequired(), Length(max=150)])
     genre = SelectField('Genero', choices=[(p.name, p.value) for p in GenreEnum], validators=[InputRequired()], coerce=str)
-    synopsis = TextAreaField('Sinopsis', validators=[Length(max=300)])
-    release_date = DateField('Fecha de publicación', validators=[InputRequired()])
-
-class AddLoanForm(FlaskForm):
-    user_id = StringField('Matrícula', validators=[InputRequired()])
-    book_id = IntegerField('Libro', validators=[InputRequired()])
-    loan_date = DateField('Fecha de préstamo', validators=[InputRequired()])
+    synopsis = TextAreaField('Sinopsis', validators=[Length(max=2000)])
+    release_date = IntegerField('Año de publicación', validators=[InputRequired(), NumberRange(min=500, max=2100, message="Ingrese un año válido")])
