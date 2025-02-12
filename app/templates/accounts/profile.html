@@ -22,7 +22,9 @@
                     <li class="lead">Matrícula: {{ current_user.id }}</li>
                 </ul>
             </div>
-            <button href="{{ url_for('logout') }}" class="button">Cerrar Sesión</button>
+            <div class="profile-button">
+                <button href="{{ url_for('logout') }}" class="button">Cerrar Sesión</button>
+            </div>
         </div>
         <div class="profile-table">
             <table class="table">
