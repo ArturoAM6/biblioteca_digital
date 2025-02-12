@@ -18,7 +18,7 @@
     <div class="nav_main">
         <h2>Top libros de {{ genre }}</h2>
         <ul>
-        {% for book in top_books[:10] %}
+        {% for book in top_books %}
             <li><a href="{{ url_for('book_details', book_id=book.id) }}">{{ loop.index }}. {{ book.title}}</a></li>
         {% endfor %}
         </ul>
@@ -26,12 +26,12 @@
     <div class="container">
         <div class="row">
             <ul>
-            {% for book in books %}
+            {% for book in books.items %}
                 <li>
                     <div class="producto">
                         <div class="imagen">
                             <a href="{{ url_for('book_details', book_id=book.id) }}">
-                                <img src="{{ url_for('static', filename='images/books/portada_{}.jpg'.format(book.title|replace(' ', '_')|lower)) }}"
+                                <img src="{{ url_for('static', filename='images/books/portada_{}.jpg'.format(book.title|replace(' ', '_')|replace(':', '')|lower)) }}"
                                     alt="Portada de {{ book.title }}" class="nohover" />
                             </a>
                         </div>
@@ -49,6 +49,19 @@
             </ul>
         </div>
     </div>
+    {% if books.items %}
+    <div class="pagination">
+        {% if books.has_prev %}
+        <a href="{{ url_for('books_by_genre', genre_name=genre, page=books.prev_num) }}" class="button">← Anterior</a>
+        {% endif %}
+    
+        <span>Página {{ books.page }} de {{ books.pages }}</span>
+    
+        {% if books.has_next %}
+        <a href="{{ url_for('books_by_genre', genre_name=genre, page=books.next_num) }}" class="button">Siguiente →</a>
+        {% endif %}
+    </div>
+    {% endif %}
 </div>
 
 {% endblock %}

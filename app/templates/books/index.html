@@ -17,7 +17,7 @@
     <div class="nav_main">
         <h2>Top Libros</h2>
         <ul>
-            {% for book in books[:10] %}
+            {% for book in books.items[:10] %}
             <li><a href="{{ url_for('book_details', book_id=book.id) }}">{{ loop.index }}. {{ book.title}}</a></li>
             {% endfor %}
         </ul>
@@ -25,7 +25,7 @@
     <div class="container">
         <div class="row">
             <ul>
-                {% for book in books %}
+                {% for book in books.items %}
                 <li>
                     <div class="producto">
                         <div class="imagen">
@@ -47,6 +47,17 @@
                 {% endfor %}
             </ul>
         </div>
+    </div>
+    <div class="pagination">
+        {% if books.has_prev %}
+            <a href="{{ url_for('all_books', page=books.prev_num) }}" class="button">← Anterior</a>
+        {% endif %}
+    
+        <span>Página {{ books.page }} de {{ books.pages }}</span>
+    
+        {% if books.has_next %}
+            <a href="{{ url_for('all_books', page=books.next_num) }}" class="button">Siguiente →</a>
+        {% endif %}
     </div>
 </div>
 

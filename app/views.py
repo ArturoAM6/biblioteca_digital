@@ -78,7 +78,7 @@ def profile():
     user_id = current_user.id
 
     page = request.args.get('page', 1, type=int)
-    per_page = 11
+    per_page = 8
 
     query = Loan.query.filter_by(returned=False)
 
@@ -192,7 +192,10 @@ def admin_loans():
 
 @app.route('/books')
 def all_books():
-    books = Book.query.all()
+    page = request.args.get('page', 1, type=int)
+    per_page=12
+    books = Book.query.paginate(page=page, per_page=per_page, error_out=False)
+    
     return render_template('books/index.html', books=books)
 
 @app.before_request
@@ -203,15 +206,17 @@ def load_genres():
 @app.route('/books/genre/<genre_name>')
 def books_by_genre(genre_name):
     genre_enum = next((g for g in GenreEnum if g.value.lower() == genre_name.lower()), None)
+    page = request.args.get('page', 1, type=int)
+    per_page = 12
     
     if genre_enum is None:
         flash(f'El género "{genre_name}" no existe.', 'error')
         return redirect(url_for('home'))
 
-    books = Book.query.filter_by(genre=genre_enum).all()
-    top_books = Book.query.order_by(Book.times_loaned.desc()).filter_by(genre=genre_enum).all()
+    books = Book.query.filter_by(genre=genre_enum).paginate(page=page, per_page=per_page, error_out=False)
+    top_books = Book.query.order_by(Book.times_loaned.desc()).filter_by(genre=genre_enum).limit(10).all()
     
-    if not books:
+    if not books.items:
         flash(f'No hay libros disponibles en el género {genre_name}.', 'error')
 
     return render_template('books/genre.html', books=books, top_books=top_books, genre=genre_enum.value, current_category=genre_enum.value)
