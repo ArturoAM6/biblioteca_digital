@@ -7,7 +7,6 @@ Una aplicación simple de una biblioteca digital hecha con Flask. Los usuarios p
 - Flask
 - Flask-WTF
 - SQLAlchemy (opcional si se usa una base de datos)
-- Bootstrap 5
 
 ## Instalación
 
@@ -27,11 +26,22 @@ Una aplicación simple de una biblioteca digital hecha con Flask. Los usuarios p
    python run.py
    ```
 
+## Backup y Restauración de la Base de Datos
+
+Para generar un respaldo de la base de datos, usa el siguiente comando:
+   mysqldump -u usuario -p database_name > backup.sql
+
+Para restaurar la base de datos desde un respaldo:
+   mysql -u usuario -p database_name < backup.sql
+
+⚠ Nota: Asegúrate de reemplazar usuario y database_name con los valores correspondientes.
+⚠ Nota: Cambiar la URL de la base de datos por el nombre asignado en (app/config.py).
+
 ## Screenshots
-![Login](static/images/login.png)
-![Tasks](static/images/tasks.png)
+![Login](app/static/images/screenshots/login.png)
+![Home](app/static/images/screenshots/home.png)
 
 ## Tecnologias usadas
 - Flask
-- HTML, CSS (Bootstrap)
+- HTML, CSS
 - SQLAlchemy (Si aplica)
