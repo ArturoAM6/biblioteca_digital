@@ -2,10 +2,71 @@
 
 {% block title %}Perfil - Biblioteca Digital{% endblock %}
 
+{% block styles %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/profile.css') }}">
+{% endblock %}
+
 {% block content %}
 <div class="container">
-    <h1 class="bold">Perfil</h1>
-    <p class="lead">Bienvenido, <strong>{{ current_user.name }}</strong>!</p>
-    <a href="{{ url_for('logout') }}" class="button">Cerrar Sesión</a>
+    <h1 class="bold white-font">Perfil</h1>
+    
+    <div class="profile-content">
+        <div class="profile-column">
+            <p class="lead bold">Bienvenido, <strong class="bold">{{ current_user.name }}</strong>!</p>
+            <div class="profile-image">
+                <img src="{{ url_for('static', filename='images/profile/profile_picture.jpg') }}" alt="profile picture">
+            </div>
+            <div class="profile-info">
+                <ul>
+                    <li class="lead">Nombre: {{ current_user.name }}</li>
+                    <li class="lead">Matrícula: {{ current_user.id }}</li>
+                </ul>
+            </div>
+            <button href="{{ url_for('logout') }}" class="button">Cerrar Sesión</button>
+        </div>
+        <div class="profile-table">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Libro</th>
+                        <th>Fecha Préstamo</th>
+                        <th>Fecha Devolución</th>
+                        <th>Estado</th>
+                        <th>Multa</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for loan in loans %}
+                    <tr>
+                        <td>{{ loan.book.title }}</td>
+                        <td>{{ loan.loan_date }}</td>
+                        <td>{{ loan.devolution_date }}</td>
+                        <td>
+                            {% if loan.returned %}
+                            <span>Devuelto</span>
+                            {% else %}
+                            <span>Pendiente</span>
+                            {% endif %}
+                        </td>
+                        <td>${{ loan.fine }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <div class="pagination">
+                {% if loans.has_prev %}
+                <a href="{{ url_for('profile', page=loans.prev_num) }}"
+                    class="button">← Anterior</a>
+                {% endif %}
+            
+                <span>Página {{ loans.page }} de {{ loans.pages }}</span>
+            
+                {% if loans.has_next %}
+                <a href="{{ url_for('profile', page=loans.next_num) }}"
+                    class="button">Siguiente →</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
 </div>
 {% endblock %}
