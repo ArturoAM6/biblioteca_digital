@@ -2,10 +2,52 @@
 
 {% block title %}Libros populares - Biblioteca Digital{% endblock %}
 
+{% block styles %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/genre.css') }}">
+{% endblock %}
+
 {% block content %}
-<div class="container">
-    <h1 class="error-title">Oops!</h1>
-    <p class="lead">Esta página sigue en construcción. Vuelve pronto!</p>
-    <a href="{{ url_for('home') }}" class="button">Volver</a>
+<div class="subheader">
+    <h3>
+        <a href="{{ url_for('home') }}">BibliotecaVirtual.com</a> /
+        <a href="{{ url_for('all_books')}}"><span class="greenfont">Todo</span></a>
+    </h3>
 </div>
+<div id="main">
+    <div class="nav_main">
+        <h2>Top Libros</h2>
+        <ul>
+            {% for book in books[:10] %}
+            <li><a href="{{ url_for('book_details', book_id=book.id) }}">{{ loop.index }}. {{ book.title}}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="container">
+        <div class="row">
+            <ul>
+                {% for book in books[:12] %}
+                <li>
+                    <div class="producto">
+                        <div class="imagen">
+                            <a href="{{ url_for('book_details', book_id=book.id) }}">
+                                <img src="{{ url_for('static', filename='images/books/portada_{}.jpg'.format(book.title|replace(' ', '_')|lower)) }}"
+                                    alt="Portada de {{ book.title }}" class="nohover" />
+                            </a>
+                        </div>
+                        <div class="info">
+                            <h3>
+                                <span class="ellipsis">
+                                    <a href="{{ url_for('book_details', book_id=book.id) }}">{{ book.title }}</a>
+                                </span>
+                            </h3>
+                            <p>Autor: {{ book.author }}</p>
+                        </div>
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+
 {% endblock %}
