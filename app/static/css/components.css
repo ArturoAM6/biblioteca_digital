@@ -54,7 +54,7 @@
 }
 
 .form-background {
-  width: 30%;
+  width: 50%;
   background-color: #D6D5C2;
   padding: 25px;
   border: none;
@@ -237,6 +237,7 @@
   justify-content: center;
   align-items: center;
   margin-top: 20px;
+  margin-bottom: 20px;
   gap: 10px;
 }
 
@@ -255,4 +256,30 @@
 
 .pagination span {
   font-weight: bold;
+}
+
+@media only screen and (min-width: 1220px) {
+  .form-background {
+    width: 40%;
+  }
+}
+
+@media only screen and (max-width: 1040px) {
+  .admin-table {
+    font-size: 12px;
+  }
+
+  .admin-table button {
+    font-size: 10px;
+  }
+
+  .form-label {
+    font-size: 12px;
+  }
+}
+
+@media only screen and (max-width: 846px) {
+  .form-background {
+    width: 70%;
+  }
 }

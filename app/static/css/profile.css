@@ -53,6 +53,71 @@
     text-align: left;
 }
 
+.profile-button {
+    margin: 0 auto;
+    width: fit-content;
+}
+
 .table {
     margin-top: 0;
+}
+
+@media only screen and (max-width: 974px){
+    .container {
+        width: 90%;
+    }
+
+    .profile-table table {
+        width: 50%;
+    }
+}
+
+@media only screen and (max-width: 726px){
+    .profile-content {
+        display: inline;
+    }
+
+    .profile-column {
+        display: flex;
+        flex-direction: column;
+        margin-top: 15px;
+        width: 80%;
+        height: 40%;
+    }
+
+    .profile-image {
+        width: 234px;
+        height: 234px;
+    }
+
+    .profile-image img {
+        width: 100%;
+        height: 100%;
+    }
+
+    .profile-info {
+        width: 40%;
+    }
+
+    .profile-button {
+        width: 40%;
+    }
+
+    .profile-table {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    .profile-table table {
+        width: 85%;
+        margin: 0 auto; 
+    }
+
+    .profile-table .pagination {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 }
