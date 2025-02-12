@@ -5,9 +5,13 @@
             <button class="list-button" onclick="toggleListMenu()">Categorías</button>
             <div class="list-menu" id="list-menu">
                 <ul>
-                    <li><a>Terror</a></li>
-                    <li><a>Autoayuda</a></li>
-                    <li><a>Infantiles</a></li>
+                    {% if g.genres %}
+                        {% for genre in g.genres %}
+                            <li><a href="{{ url_for('books_by_genre', genre_name=genre) }}">{{ genre }}</a></li>
+                        {% endfor %}
+                    {% else %}
+                        <p>No hay categorías disponibles.</p>
+                    {% endif %}
                 </ul>
             </div>
         </li>

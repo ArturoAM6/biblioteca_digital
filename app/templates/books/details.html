@@ -10,23 +10,22 @@
 {% block content %}
 <div class="container">
     <div class="images">
-        <ul>
-            <li>
-                <img src="{{ url_for('static', filename='images/books/portada_' + book.title|replace(' ', '_')|lower + '.jpg') }}"
-                    alt="Portada de {{ book.title }}">
-            </li>
-        </ul>
+        <img src="{{ url_for('static', filename='images/books/portada_' + book.title|replace(' ', '_')|lower + '.jpg') }}"
+            alt="Portada de {{ book.title }}">
     </div>
     <div class="info">
-        <h2>{{ book.title }}</h2>
-        <p class="author">Autor: {{ book.author }}</p>
+        <h2><strong class="bold">{{ book.title }}</strong></h2>
+        <p class="author">Autor: <span class="bold">{{ book.author }}</span></p>
     <div class="parrafo">    
         <p class="synopsis">{{ book.synopsis }}</p>
     </div>
+    <div>
+        <p class="parrafo">Disponibilidad: <span class="bold">{% if book.status %}Disponible{% else %}No disponible{% endif %}</span></p>
+    </div>
 
         <form action="{{ url_for('loan_book', book_id=book.id) }}" method="POST">
-            <div class="button">
-                <button type="submit">Reservar</button>
+            <div class="button-div">
+                <button type="submit" class="button">Reservar</button>
             </div>
         </form>
     </div>

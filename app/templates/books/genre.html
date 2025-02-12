@@ -11,20 +11,16 @@
     <h3>
         <a href="{{ url_for('home') }}">BibliotecaVirtual.com</a> /
         <a href="{{ url_for('books_by_genre', genre_name=genre)}}"><span>{{genre}}</span></a> /
-        <a href="{{ url_for('books_by_genre', genre_name=genre)}}"><span class="greenfont">Todo</span></a>
+        <a href="{{ url_for('all_books')}}"><span class="greenfont">Todo</span></a>
     </h3>
 </div>
 <div id="main">
     <div class="nav_main">
+        <h2>Top libros de {{ genre }}</h2>
         <ul>
-            <li class="bold">
-                Libros top
-                <ul>
-                    <li><a>1. It</a></li>
-                    <li><a>2.El umbral de la noche</a></li>
-                </ul>
-            </li>
-
+        {% for book in top_books[:10] %}
+            <li><a href="{{ url_for('book_details', book_id=book.id) }}">{{ loop.index }}. {{ book.title}}</a></li>
+        {% endfor %}
         </ul>
     </div>
     <div class="container">
@@ -49,8 +45,6 @@
                         </div>
                     </div>
                 </li>
-            {% else %}
-                <p>No se encontraron libros en esta categoría.</p>
             {% endfor %}
             </ul>
         </div>

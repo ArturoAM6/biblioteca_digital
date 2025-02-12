@@ -3,9 +3,13 @@
         <div class="footer-column">
             <h3 class="bold">CATEGORÍAS</h3>
                 <ul>
-                    <li><a href="Colecciones/Mujer/ver-todo.html">Terror</a></li>
-                    <li><a href="Colecciones/Hombre/ver-todo.html">Autoayuda</a></li>
-                    <li><a href="Colecciones/Niño/ver-todo.html"></a>Escolares</li>
+                    {% if g.genres %}
+                        {% for genre in g.genres %}
+                            <li><a href="{{ url_for('books_by_genre', genre_name=genre) }}">{{ genre }}</a></li>
+                        {% endfor %}
+                    {% else %}
+                        <p>No hay categorías disponibles.</p>
+                    {% endif %}
                 </ul>
         </div>
         <div class="footer-column">
@@ -22,7 +26,7 @@
         <div class="footer-column">
             <h3 class="bold">CONTACTANOS</h3>
                 <ul>
-                    <li><a href="">Sugerencias</a></li>
+                    <li>Sugerencias</li>
                 </ul>
         </div>
         <div class="footer-column">

@@ -10,12 +10,12 @@
         <div class="col-3">
             <label for="user_id" class="form-label align-left">Filtrar por matrícula</label>
             <input type="text" class="small-form-input" name="user_id" placeholder="Filtrar por matrícula"
-                value="{{ request.args.get('user_id') }}">
+                value="{{ request.args.get('user_id') if request.args.get('user_id') and request.args.get('user_id') != 'None' else '' }}">
         </div>
         <div class="col-3">
             <label for="book_id" class="form-label">Filtrar por ID de Libro</label>
             <input type="text" class="small-form-input" name="book_id" placeholder="Filtrar por ID de Libro"
-                value="{{ request.args.get('book_id') }}">
+                value="{{ request.args.get('book_id') if request.args.get('book_id') and request.args.get('book_id') != 'None' else '' }}">
         </div>
         <div class="col-3">
             <button type="submit" class="button small-button">Filtrar</button>
@@ -36,7 +36,7 @@
             </tr>
         </thead>
         <tbody>
-            {% for loan in loans %}
+            {% for loan in loans.items %}
             <tr>
                 <td>{{ loan.user.name }}</td>
                 <td>{{ loan.user.id }}</td>
@@ -62,5 +62,16 @@
             {% endfor %}
         </tbody>
     </table>
+</div>
+<div class="pagination">
+    {% if loans.has_prev %}
+        <a href="{{ url_for('admin_loans', page=loans.prev_num, user_id=request.args.get('user_id'), book_id=request.args.get('book_id')) }}" class="button">← Anterior</a>
+    {% endif %}
+
+    <span>Página {{ loans.page }} de {{ loans.pages }}</span>
+
+    {% if loans.has_next %}
+        <a href="{{ url_for('admin_loans', page=loans.next_num, user_id=request.args.get('user_id'), book_id=request.args.get('book_id')) }}" class="button">Siguiente →</a>
+    {% endif %}
 </div>
 {% endblock %}
