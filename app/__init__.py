@@ -14,7 +14,7 @@ login_manager.login_view = 'login'
 
 @login_manager.user_loader
 def load_user(user_id):
-    return User.query.get(int(user_id)) or None
+    return User.query.get(user_id) or None
 
 @app.errorhandler(404)
 def page_not_found(e):

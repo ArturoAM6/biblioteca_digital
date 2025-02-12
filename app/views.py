@@ -1,4 +1,4 @@
-from flask import render_template, flash, redirect, url_for, request
+from flask import render_template, flash, redirect, url_for, request, g
 from flask_login import login_user, login_required, logout_user, current_user
 from app import db, bcrypt, app
 from .models import User, Book, Loan, GenreEnum
@@ -7,7 +7,12 @@ from datetime import date, timedelta
 
 @app.route('/')
 def home():
-    return render_template('home.html')
+    books = Book.query.all()
+    return render_template('home.html', books=books)
+
+@app.route('/go-back')
+def go_back():
+    return redirect(request.referrer)
 
 @app.route('/login', methods=['GET','POST'])
 def login():
@@ -70,7 +75,19 @@ def logout():
 @app.route('/profile')
 @login_required
 def profile():
-    return render_template('accounts/profile.html')
+    user_id = current_user.id
+
+    page = request.args.get('page', 1, type=int)
+    per_page = 11
+
+    query = Loan.query.filter_by(returned=False)
+
+    if user_id:
+        query = query.filter_by(user_id=user_id)
+
+    loans = query.order_by(Loan.loan_date.desc()).paginate(page=page, per_page=per_page, error_out=False)
+
+    return render_template('accounts/profile.html', loans=loans)
 
 @app.route('/books/register', methods=['GET','POST'])
 @login_required
@@ -104,7 +121,7 @@ def loan_book(book_id):
 
     if not book.status:
         flash('Este libro no está disponible', 'error')
-        return redirect(url_for('home'))
+        return redirect(url_for('go_back'))
 
     loan_date = date.today()
     devolution_date = loan_date + timedelta(days=7)
@@ -156,37 +173,48 @@ def admin_loans():
         flash('No tienes permisos para acceder a esta pagina', 'error')
         return redirect(url_for('home'))
     
+    page = request.args.get('page', 1, type=int)
+    per_page = 5
+    
     user_id = request.args.get('user_id')
     book_id = request.args.get('book_id')
 
-    if user_id:
-        loans = Loan.query.filter_by(user_id=user_id, returned=False).all()
-    elif book_id:
-        loans = Loan.query.filter_by(book_id=book_id, returned=False).all()
-    else:
-        loans = Loan.query.filter_by(returned=False).all()
+    query = Loan.query.filter_by(returned=False)
 
-    return render_template('accounts/admin_loans.html', loans=loans)
+    if user_id:
+        query = query.filter_by(user_id=user_id)
+    elif book_id:
+        loans = query.filter_by(book_id=book_id)
+
+    loans = query.paginate(page=page, per_page=per_page, error_out=False)
+
+    return render_template('accounts/admin_loans.html', loans=loans, user_id=user_id, book_id=book_id)
 
 @app.route('/books')
 def all_books():
     books = Book.query.all()
     return render_template('books/index.html', books=books)
 
+@app.before_request
+def load_genres():
+    genres = [genre.value for genre in GenreEnum]
+    g.genres = genres
+
 @app.route('/books/genre/<genre_name>')
 def books_by_genre(genre_name):
-    try:
-        genre_enum = next((g for g in GenreEnum if g.value.lower() == genre_name.lower()), None)
-    except KeyError:
+    genre_enum = next((g for g in GenreEnum if g.value.lower() == genre_name.lower()), None)
+    
+    if genre_enum is None:
         flash(f'El género "{genre_name}" no existe.', 'error')
         return redirect(url_for('home'))
 
     books = Book.query.filter_by(genre=genre_enum).all()
+    top_books = Book.query.order_by(Book.times_loaned.desc()).filter_by(genre=genre_enum).all()
     
     if not books:
         flash(f'No hay libros disponibles en el género {genre_name}.', 'error')
 
-    return render_template('books/genre.html', books=books, genre=genre_enum.value)
+    return render_template('books/genre.html', books=books, top_books=top_books, genre=genre_enum.value, current_category=genre_enum.value)
 
 @app.route('/books/<int:book_id>')
 def book_details(book_id):
@@ -195,4 +223,5 @@ def book_details(book_id):
 
 @app.route('/books/popular')
 def popular_books():
-    return render_template('books/popular.html')
+    books = Book.query.order_by(Book.times_loaned.desc()).all()
+    return render_template('books/popular.html', books=books)
