@@ -157,6 +157,7 @@ def confirm_return(loan_id):
     
     loan.calculate_fine()
     loan.returned = True
+    loan.fine_paid = True
 
     book = Book.query.get(loan.book_id)
     book.status = True
