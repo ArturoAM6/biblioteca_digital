@@ -57,49 +57,6 @@ ul {
   margin: 20px;
 }
 
-.nav li {
-  display: inline;
-  color: #36453b;
-}
-
-.nav ul li ul li {
-  position: relative;
-}
-
-.nav ul li ul li ul {
-  position: absolute;
-  display: none;
-}
-
-.nav ul li ul li:hover > ul {
-  display: inline-block;
-  z-index: 4;
-  background-color: #c2c1a5;
-  height: fit-content;
-  width: fit-content;
-  top: 40px;
-  left: 0;
-}
-
-.nav ul li ul li:hover > ul a {
-  color: #36453b;
-  display: block;
-}
-
-.nav ul li ul li ul a:hover {
-  background-color: #f5f9e9;
-}
-
-.nav a {
-  padding: 20px;
-  color: #f5f9e9;
-}
-
-.nav a:hover {
-  background-color: #c2c1a5;
-  color: #36453b;
-}
-
 .title {
   margin-top: 15px;
 }
@@ -222,9 +179,9 @@ ul {
 
   .nav {
     position: absolute;
-    height: 500px;
     width: 80%;
     margin: 0;
+    z-index: 4;
   }
 
   .nav_main {

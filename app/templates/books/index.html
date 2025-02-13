@@ -23,28 +23,65 @@
         </ul>
     </div>
     <div class="container">
+        <form action="{{ url_for('all_books') }}" method="get" class="table-form" id="filter-form">
+            <div class="col-3">
+                <label for="book_id" class="form-label">Filtrar por ID de Libro</label>
+                <input type="text" class="small-form-input" name="book_id" placeholder="Filtrar por ID de Libro"
+                    value="{{ request.args.get('book_id') if request.args.get('book_id') and request.args.get('book_id') != 'None' else '' }}">
+            </div>
+            <div class="col-3">
+                <button type="submit" class="button small-button">Filtrar</button>
+            </div>
+        </form>
+    </div>
+    <div class="container">
         <div class="row">
             <ul>
-                {% for book in books.items %}
-                <li>
-                    <div class="producto">
-                        <div class="imagen">
-                            <a href="{{ url_for('book_details', book_id=book.id) }}">
-                                <img src="{{ url_for('static', filename='images/books/portada_{}.jpg'.format(book.title|replace(' ', '_')|lower)) }}"
-                                    alt="Portada de {{ book.title }}" class="nohover" />
-                            </a>
+                {% if filtered_books %}
+                 <h3>Resultados para el ID: {{ request.args.get('book_id') }}</h3>
+                    {% for book in filtered_books %}
+                        <li>
+                            <div class="producto">
+                                <div class="imagen">
+                                    <a href="{{ url_for('book_details', book_id=book.id) }}">
+                                        <img src="{{ url_for('static', filename='images/books/portada_{}.jpg'.format(book.title|replace(' ', '_')|lower)) }}"
+                                            alt="Portada de {{ book.title }}" class="nohover" />
+                                    </a>
+                                </div>
+                                <div class="info">
+                                    <h3>
+                                        <span class="ellipsis">
+                                            <a href="{{ url_for('book_details', book_id=book.id) }}">{{ book.title }}</a>
+                                        </span>
+                                    </h3>
+                                    <p>Autor: {{ book.author }}</p>
+                                </div>
+                            </div>
+                        </li>
+                    {% endfor %}
+                {% else %}
+                    <h3>Todos los libros</h3>
+                    {% for book in books.items %}
+                    <li>
+                        <div class="producto">
+                            <div class="imagen">
+                                <a href="{{ url_for('book_details', book_id=book.id) }}">
+                                    <img src="{{ url_for('static', filename='images/books/portada_{}.jpg'.format(book.title|replace(' ', '_')|lower)) }}"
+                                        alt="Portada de {{ book.title }}" class="nohover" />
+                                </a>
+                            </div>
+                            <div class="info">
+                                <h3>
+                                    <span class="ellipsis">
+                                        <a href="{{ url_for('book_details', book_id=book.id) }}">{{ book.title }}</a>
+                                    </span>
+                                </h3>
+                                <p>Autor: {{ book.author }}</p>
+                            </div>
                         </div>
-                        <div class="info">
-                            <h3>
-                                <span class="ellipsis">
-                                    <a href="{{ url_for('book_details', book_id=book.id) }}">{{ book.title }}</a>
-                                </span>
-                            </h3>
-                            <p>Autor: {{ book.author }}</p>
-                        </div>
-                    </div>
-                </li>
-                {% endfor %}
+                    </li>
+                    {% endfor %}
+                {% endif %}
             </ul>
         </div>
     </div>

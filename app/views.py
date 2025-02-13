@@ -190,13 +190,20 @@ def admin_loans():
 
     return render_template('accounts/admin_loans.html', loans=loans, user_id=user_id, book_id=book_id)
 
-@app.route('/books')
+@app.route('/books', methods=['GET','POST'])
 def all_books():
     page = request.args.get('page', 1, type=int)
     per_page=12
-    books = Book.query.paginate(page=page, per_page=per_page, error_out=False)
+    book_id = request.args.get('book_id')
+
+    books_query = Book.query
+    books = books_query.paginate(page=page, per_page=per_page, error_out=False)
+
+    filtered_books = []
+    if book_id and book_id.isdigit():
+        filtered_books = books_query.filter(Book.id ==book_id).all()
     
-    return render_template('books/index.html', books=books)
+    return render_template('books/index.html', books=books, filtered_books=filtered_books)
 
 @app.before_request
 def load_genres():
